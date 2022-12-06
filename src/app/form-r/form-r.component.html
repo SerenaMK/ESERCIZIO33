@@ -1,0 +1,114 @@
+<!-- REACTIVE FORM -->
+<div class="container mt-3">
+    <h1 class="text-center">Reactive Form</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form [formGroup]="form">
+                <div formGroupName="heroInfo">
+
+                    <!-- NAME -->
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" class="form-control" formControlName="name">
+                        <span *ngIf="getFormC('heroInfo.name')?.invalid && getFormC('heroInfo.name')?.touched">
+                            <ng-container *ngIf="getErrorsC('heroInfo.name', 'required')">
+                                <i class="text-danger">Campo Name obbligatorio.</i>
+                            </ng-container>
+                            <ng-container *ngIf="getErrorsC('heroInfo.name', 'nameProibito')">
+                                <i class="text-danger">Nome non consentito.</i>
+                            </ng-container>
+                        </span>
+                    </div>
+
+                    <!-- ALTER -->
+                    <div class="form-group">
+                        <label for="alter">Alter ego</label>
+                        <input type="text" id="alter" class="form-control" formControlName="alter">
+                        <span *ngIf="getFormC('heroInfo.alter')?.invalid && getFormC('heroInfo.alter')?.touched">
+                            <ng-container *ngIf="getErrorsC('heroInfo.alter', 'required')">
+                                <i class="text-danger">Campo Alter ego obbligatorio.</i>
+                            </ng-container>
+                            <ng-container *ngIf="getErrorsC('heroInfo.alter', 'nameProibito')">
+                                <i class="text-danger">Nome non consentito.</i>
+                            </ng-container>
+                        </span>
+                    </div>
+
+                    <!-- ENEMY -->
+                    <div class="form-group">
+                        <label for="enemy">Nemico</label>
+                        <input type="text" id="enemy" class="form-control" formControlName="enemy">
+                        <span *ngIf="getFormC('heroInfo.enemy')?.invalid && getFormC('heroInfo.enemy')?.touched">
+                            <ng-container *ngIf="getErrorsC('heroInfo.enemy', 'required')">
+                                <i class="text-danger">Campo Enemy obbligatorio.</i>
+                            </ng-container>
+                            <ng-container *ngIf="getErrorsC('heroInfo.enemy', 'nameProibito')">
+                                <i class="text-danger">Nome non consentito.</i>
+                            </ng-container>
+                        </span>
+                    </div>
+
+                    <!-- PLANET -->
+                    <div class="form-group">
+                        <label for="planet">Pianeta</label>
+                        <input type="text" id="planet" class="form-control" formControlName="planet">
+                        <span *ngIf="getFormC('heroInfo.planet')?.invalid && getFormC('heroInfo.planet')?.touched">
+                            <ng-container *ngIf="getErrorsC('heroInfo.planet', 'required')">
+                                <i class="text-danger">Campo Pianeta obbligatorio.</i>
+                            </ng-container>
+                            <ng-container *ngIf="getErrorsC('heroInfo.planet', 'nameProibito')">
+                                <i class="text-danger">Nome non consentito.</i>
+                            </ng-container>
+                        </span>
+                    </div>
+
+                    <!-- WEAKNESS -->
+                    <div class="form-group">
+                        <label for="weakness">Debolezza</label>
+                        <input type="text" id="weakness" class="form-control" formControlName="weakness">
+                        <span *ngIf="getFormC('heroInfo.weakness')?.invalid && getFormC('heroInfo.weakness')?.touched">
+                            <ng-container *ngIf="getErrorsC('heroInfo.weakness', 'required')">
+                                <i class="text-danger">Campo Debolezza obbligatorio.</i>
+                            </ng-container>
+                            <ng-container *ngIf="getErrorsC('heroInfo.weakness', 'nameProibito')">
+                                <i class="text-danger">Nome non consentito.</i>
+                            </ng-container>
+                        </span>
+                    </div>
+
+                </div>
+
+                <!-- POWERS -->
+                <div formArrayName="powers" class="my-3">
+                    <label for="powers">Superpoteri</label>
+                    <button type="button" class="btn btn-success ms-5 mb-2" (click)="addPowers()">Aggiungi potere</button>
+                    <div class="form-group mb-2" *ngFor="let powerC of getPowersF(); let i = index">
+                        <input type="text" class="form-control" [formControlName]="i">
+                    </div>
+                </div>
+
+                <!-- SUBMIT -->
+                <button type="submit" (click)="submit(form)" class="btn btn-primary"
+                    [disabled]="form.invalid">Invia</button>
+
+            </form>
+
+            <!-- <div class="container mt-5">
+                <div class="row">
+                    <div class="col" *ngIf="hero.name != ''">
+                        <h2>Il tuo eroe</h2>
+                        <p><b>Name:</b> {{ hero.name }}</p>
+                        <p><b>Alter ego:</b> {{ hero.alter }}</p>
+                        <p><b>Superpotere:</b> {{ hero.power }}</p>
+                        <p><b>Nemico:</b> {{ hero.enemy }}</p>
+                        <p><b>Pianeta:</b> {{ hero.planet }}</p>
+                        <p><b>Debolezza:</b> {{ hero.weakness }}</p>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+    </div>
+</div>

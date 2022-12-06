@@ -1,0 +1,79 @@
+<!-- TEMPLATE DRIVEN FORM -->
+<div class="container">
+    <h1 class="text-center">Template Driven Form</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div>
+                    <form (ngSubmit)="submit(form)" #form="ngForm">
+
+                            <!-- NOME -->
+                            <div class="form-group">
+                                <label for="name">Nome</label>
+                                <input type="text" id="name" [ngModel]="hero.name" name="name" class="form-control" required #name="ngModel">
+                                <p *ngIf="name.invalid && name.touched"><i class="text-danger">Questo campo è obbligatorio.</i></p>
+                            </div>
+
+                            <!-- ALTER EGO -->
+                            <div class="form-group">
+                                <label for="alter">Alter ego</label>
+                                <input type="alter" id="alter" name="alter" [ngModel]="hero.alter" class="form-control" required #alter="ngModel">
+                            </div>
+                            <p *ngIf="alter.invalid && alter.touched"><i class="text-danger">Inserire alter ego.</i></p>
+
+                            <!-- SUPERPOWER -->
+                            <div class="form-group">
+                                <label for="powers">Superpotere</label>
+                                <select name="powers" id="powers" class="form-select" [ngModel]="hero.powers">
+                                    <option value="super forte">Super forte</option>
+                                    <option value="volare">Volare</option>
+                                    <option value="occhi laser">Occhi laser</option>
+                                </select>
+                            </div>
+
+                            <!-- ENEMY -->
+                            <div class="form-group">
+                                <label for="enemy">Nemico</label>
+                                <input type="enemy" id="enemy" name="enemy" [ngModel]="hero.enemy" class="form-control" required #enemy="ngModel">
+                            </div>
+                            <p *ngIf="enemy.invalid && enemy.touched"><i class="text-danger">Inserire pianeta.</i></p>
+
+                            <!-- PLANET -->
+                            <div class="form-group">
+                                <label for="planet">Pianeta</label>
+                                <input type="planet" id="planet" name="planet" [ngModel]="hero.planet" class="form-control" required #planet="ngModel">
+                            </div>
+                            <p *ngIf="planet.invalid && planet.touched"><i class="text-danger">Inserire pianeta.</i></p>
+
+                            <!-- WEAKNESS -->
+                            <div class="form-group">
+                                <label for="weakness">Debolezza</label>
+                                <input type="weakness" id="weakness" name="weakness" [ngModel]="hero.weakness" class="form-control" required #weakness="ngModel">
+                            </div>
+                            <p *ngIf="weakness.invalid && weakness.touched"><i class="text-danger">Inserire una debolezza.</i></p>
+
+
+                            <!-- SUBMIT -->
+                            <button type="submit" class="btn btn-primary mt-3" [disabled]="form.invalid">Invia</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col" *ngIf="hero.name != ''">
+                <h2>Il tuo eroe</h2>
+                <p><b>Name:</b> {{ hero.name }}</p>
+                <p><b>Alter ego:</b> {{ hero.alter }}</p>
+                <p><b>Superpotere:</b> {{ hero.powers }}</p>
+                <p><b>Nemico:</b> {{ hero.enemy }}</p>
+                <p><b>Pianeta:</b> {{ hero.planet }}</p>
+                <p><b>Debolezza:</b> {{ hero.weakness }}</p>
+            </div>
+        </div>
+    </div>
+</div>
